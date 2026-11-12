@@ -1,0 +1,11 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:Gestao_Academia.ViewModels"
+             x:Class="Gestao_Academia.Views.AlunosView"
+             x:DataType="vm:AlunosViewModel">
+
+    <StackPanel Spacing="4">
+        <TextBlock Text="Alunos" FontSize="22" FontWeight="SemiBold"/>
+        <TextBlock Text="{Binding Mensagem}" Foreground="Gray"/>
+    </StackPanel>
+</UserControl>

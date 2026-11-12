@@ -7,16 +7,28 @@
         x:Class="Gestao_Academia.Views.MainWindow"
         x:DataType="vm:MainViewModel"
         Icon="/Assets/avalonia-logo.ico"
-        Title="Gestao_Academia">
+        Title="Sistema de Gestão de Academia"
+        Width="1100"  Height="660">
 
     <Design.DataContext>
-        <!-- This only sets the DataContext for the previewer in an IDE,
-             to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-        <vm:MainViewModel />
+        <vm:MainViewModel/>
     </Design.DataContext>
 
-    <TextBox Text="{Binding Greeting}"
-             HorizontalAlignment="Center"
-             VerticalAlignment="Center" />
+    <Window.Styles>
+        <Style Selector="Button.menu">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="#CBD5E1" />
+            <Setter Property="HorizontalAlignment" Value="Stretch" />
+            <Setter Property="HorizontalContentAlignment" Value="Left" />
+            <Setter Property="Padding" Value="12,10" />
+            <Setter Property="FontSize" Value="14" />
+        </Style>
+        <Style Selector="Button.menu:pointerover /template/
+     ContentPresenter#PART_ContentPresenter">
+         <Setter Property="Background" Value="#F97316"/>
+         <Setter Property="Foreground" Value="White" />
+      </Style>
+    </Window.Styles>
 
+    
 </Window>
