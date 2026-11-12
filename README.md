@@ -57,7 +57,7 @@ Este projeto está sob a licença **MIT**. Veja o arquivo [LICENSE](LICENSE) par
 | Sara Arruda | [@Sararruda](https://github.com/Sararruda) |
 | Daniel Mota | [@danielRMota](https://github.com/danielRMota) |
 | Luiz Kaynan | [@kaynan-CC](https://github.com/kaynan-CC) |
-| Pedro Vinicius | Interface gráfica (C#) |
+| Pedro Vinicius | [@PedroVini09](https://github.com/PedroVini09) |
 
 **Orientadora:** Professora Ana Paula do Ó — [@profanacgpb](https://github.com/profanacgpb)
 
