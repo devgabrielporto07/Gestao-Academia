@@ -5,7 +5,7 @@
              x:DataType="vm:PlanosViewModel">
 
     <StackPanel Spacing="4">
-        <TextBlock Text="Alunos" FontSize="22" FontWeight="SemiBold"/>
+        <TextBlock Text="Planos" FontSize="22" FontWeight="SemiBold"/>
         <TextBlock Text="{Binding Mensagem}" Foreground="Gray"/>
     </StackPanel>
 </UserControl>
