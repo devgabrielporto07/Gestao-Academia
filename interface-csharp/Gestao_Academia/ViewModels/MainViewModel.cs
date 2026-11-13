@@ -1,19 +1,29 @@
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using Gestao_Academia.Services;
 
 namespace Gestao_Academia.ViewModels;
 
 public partial class MainViewModel : ViewModelBase
 {
-    [ObservableProperty]
-   public partial ViewModelBase PaginaAtual {get; set;}= new AlunosViewModel();
+    // Os serviços são criados UMA vez e reaproveitados.
+    // Assim os dados não somem quando você troca de página.
+    private readonly IAlunoService _alunoService = new AlunoServiceFake();
 
-   [RelayCommand]
-   private void IrPara(string pagina)
+    [ObservableProperty]
+    public partial ViewModelBase PaginaAtual { get; set; }
+
+    public MainViewModel()
+    {
+        PaginaAtual = new AlunosViewModel(_alunoService);
+    }
+
+    [RelayCommand]
+    private void IrPara(string pagina)
     {
         PaginaAtual = pagina switch
         {
-            "Alunos" => new AlunosViewModel(),
+            "Alunos" => new AlunosViewModel(_alunoService),
             "Planos" => new PlanosViewModel(),
             _ => PaginaAtual
         };

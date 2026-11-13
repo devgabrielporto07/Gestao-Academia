@@ -4,8 +4,91 @@
              x:Class="Gestao_Academia.Views.AlunosView"
              x:DataType="vm:AlunosViewModel">
 
-    <StackPanel Spacing="4">
-        <TextBlock Text="Alunos" FontSize="22" FontWeight="SemiBold"/>
-        <TextBlock Text="{Binding Mensagem}" Foreground="Gray"/>
+  <Design.DataContext>
+    <vm:AlunosViewModel/>
+  </Design.DataContext>
+
+  <!-- Estilo dos "cartões" brancos -->
+  <UserControl.Styles>
+    <Style Selector="Border.cartao">
+      <Setter Property="Background" Value="White"/>
+      <Setter Property="BorderBrush" Value="#E3E3E3"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="8"/>
+      <Setter Property="Padding" Value="16"/>
+    </Style>
+    <Style Selector="TextBlock.rotulo">
+      <Setter Property="FontSize" Value="12"/>
+      <Setter Property="Foreground" Value="#444444"/>
+      <Setter Property="Margin" Value="0,0,0,4"/>
+    </Style>
+  </UserControl.Styles>
+
+  <DockPanel>
+
+    <!-- 1. Título -->
+    <StackPanel DockPanel.Dock="Top" Margin="0,0,0,16">
+      <TextBlock Text="Alunos" FontSize="22" FontWeight="SemiBold"/>
+      <TextBlock Text="Cadastre, pesquise e gerencie os alunos da academia" Foreground="Gray"/>
     </StackPanel>
+
+    <!-- 2. Cartão do formulário -->
+    <Border Classes="cartao" DockPanel.Dock="Top" Margin="0,0,0,16">
+      <StackPanel Spacing="12">
+        <TextBlock Text="Novo aluno" FontWeight="SemiBold"/>
+
+        <Grid ColumnDefinitions="2*,12,*,12,*">
+          <StackPanel Grid.Column="0">
+            <TextBlock Classes="rotulo" Text="Nome completo"/>
+            <TextBox Text="{Binding Nome}" PlaceholderText="Ex.: Mariana Souza"/>
+          </StackPanel>
+          <StackPanel Grid.Column="2">
+            <TextBlock Classes="rotulo" Text="CPF"/>
+            <TextBox Text="{Binding Cpf}" PlaceholderText="000.000.000-00"/>
+          </StackPanel>
+          <StackPanel Grid.Column="4">
+            <TextBlock Classes="rotulo" Text="Telefone"/>
+            <TextBox Text="{Binding Telefone}" PlaceholderText="(83) 99999-0000"/>
+          </StackPanel>
+        </Grid>
+
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="8">
+          <Button Content="Limpar" Command="{Binding LimparCommand}"/>
+          <Button Content="Salvar aluno" Command="{Binding SalvarCommand}"
+                  Background="#F97316" Foreground="White"/>
+        </StackPanel>
+      </StackPanel>
+    </Border>
+
+    <!-- 3. Cartão da lista (ocupa o resto do espaço) -->
+    <Border Classes="cartao">
+      <DockPanel>
+
+        <!-- Barra de cima: pesquisa, remover, mensagem -->
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+          <TextBox Width="280" Text="{Binding Pesquisa}" PlaceholderText="Pesquisar por nome ou CPF..."/>
+          <Button Content="Remover selecionado" Command="{Binding RemoverCommand}" Foreground="#B91C1C"/>
+          <TextBlock Text="{Binding Mensagem}" VerticalAlignment="Center" Foreground="#555555"/>
+        </StackPanel>
+
+        <!-- Tabela -->
+        <DataGrid ItemsSource="{Binding Alunos}"
+                  SelectedItem="{Binding AlunoSelecionado}"
+                  IsReadOnly="True"
+                  AutoGenerateColumns="False"
+                  GridLinesVisibility="Horizontal">
+          <DataGrid.Columns>
+            <DataGridTextColumn Header="ID"       Binding="{Binding Id}"       Width="60"/>
+            <DataGridTextColumn Header="Nome"     Binding="{Binding Nome}"     Width="2*"/>
+            <DataGridTextColumn Header="CPF"      Binding="{Binding Cpf}"      Width="150"/>
+            <DataGridTextColumn Header="Telefone" Binding="{Binding Telefone}" Width="150"/>
+            <DataGridTextColumn Header="Plano"    Binding="{Binding Plano}"    Width="110"/>
+            <DataGridTextColumn Header="Situação" Binding="{Binding Situacao}" Width="130"/>
+          </DataGrid.Columns>
+        </DataGrid>
+
+      </DockPanel>
+    </Border>
+
+  </DockPanel>
 </UserControl>
