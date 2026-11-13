@@ -1,0 +1,58 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:Gestao_Academia.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="1100" d:DesignHeight="660"
+        x:Class="Gestao_Academia.Views.MainWindow"
+        x:DataType="vm:MainViewModel"
+        Icon="/Assets/avalonia-logo.ico"
+        Title="Sistema de Gestão de Academia"
+        Width="1100" Height="660">
+
+  <Design.DataContext>
+    <vm:MainViewModel />
+  </Design.DataContext>
+
+  <!-- Estilos: valem para todo botão com Classes="menu" -->
+  <Window.Styles>
+    <Style Selector="Button.menu">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Foreground" Value="#CBD5E1"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="HorizontalContentAlignment" Value="Left"/>
+      <Setter Property="Padding" Value="12,10"/>
+      <Setter Property="FontSize" Value="14"/>
+    </Style>
+    <Style Selector="Button.menu:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#F97316"/>
+      <Setter Property="Foreground" Value="White"/>
+    </Style>
+  </Window.Styles>
+
+  <DockPanel>
+
+    <!-- Menu lateral (preso à esquerda) -->
+    <Border DockPanel.Dock="Left" Width="220" Background="#1F2937" Padding="10,16">
+      <StackPanel Spacing="4">
+        <TextBlock Text="AcademiaFit" Foreground="White" FontSize="18"
+                   FontWeight="Bold" Margin="12,4,0,18"/>
+
+        <Button Classes="menu" Content="Alunos"
+                Command="{Binding IrParaCommand}" CommandParameter="Alunos"/>
+        <Button Classes="menu" Content="Planos"
+                Command="{Binding IrParaCommand}" CommandParameter="Planos"/>
+        <Button Classes="menu" Content="Matrículas"
+                Command="{Binding IrParaCommand}" CommandParameter="Matriculas"/>
+        <Button Classes="menu" Content="Pagamentos"
+                Command="{Binding IrParaCommand}" CommandParameter="Pagamentos"/>
+        <Button Classes="menu" Content="Frequência"
+                Command="{Binding IrParaCommand}" CommandParameter="Frequencia"/>
+      </StackPanel>
+    </Border>
+
+    <!-- Área da direita: mostra a página atual -->
+    <ContentControl Content="{Binding PaginaAtual}" Margin="24"/>
+
+  </DockPanel>
+</Window>

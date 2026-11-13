@@ -1,0 +1,19 @@
+# Pastas de compilação
+bin/
+obj/
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Visual Studio Code
+.vscode/
+
+# Arquivos temporários
+*.tmp
+*.log
+
+# Sistema operacional
+Thumbs.db
+.DS_Store
