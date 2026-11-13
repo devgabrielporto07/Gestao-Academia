@@ -13,8 +13,6 @@ O **Sistema de Gestão de Academia** é um projeto acadêmico simples e prático
 O núcleo do sistema é escrito em **C**, roda no **terminal** e segue a ideia de **modularização**: cada funcionalidade fica em seu próprio módulo (`.c` / `.h`), e todos são integrados em um único `main.c`.
 Em paralelo, está sendo desenvolvida uma **interface gráfica em C#**.
 
-> 🚧 Projeto em desenvolvimento.
-
 ## Acesse o projeto
 
 Clone o repositório:
