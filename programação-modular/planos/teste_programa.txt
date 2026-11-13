@@ -1,0 +1,70 @@
+ROTEIRO DE TESTES - MODULO DE PLANOS
+
+Como usar:
+1. Compile o programa uma vez, na pasta programacao-modular:
+   gcc .\main.c .\planos\planos.c -o .\planos.exe compilar junto com a main que e o ponto de entrada do programa
+2. Para cada caso abaixo, execute novamente:
+   .\planos.exe
+3. Digite as entradas indicadas, uma por vez, quando o programa pedir.
+
+Este roteiro e para testar um caso por execucao. Nao envie o arquivo inteiro
+como entrada do programa, pois os titulos dos casos tambem seriam lidos.
+
+CASO 1 - Plano mensal
+Pergunta inicial: PLANOS
+Pergunta do ID: 1
+Esperado: exibe o plano Mensal e a mensagem de cadastro com sucesso.
+
+CASO 2 - Plano trimestral
+Pergunta inicial: PLANOS
+Pergunta do ID: 2
+Esperado: exibe o plano Trimestral e a mensagem de cadastro com sucesso.
+
+CASO 3 - Plano semestral
+Pergunta inicial: PLANOS
+Pergunta do ID: 3
+Esperado: exibe o plano Semestral e a mensagem de cadastro com sucesso.
+
+CASO 4 - Plano anual
+Pergunta inicial: PLANOS
+Pergunta do ID: 4
+Esperado: exibe o plano Anual e a mensagem de cadastro com sucesso.
+
+CASO 5 - Palavra de inicializacao incorreta
+Pergunta inicial: TESTE
+Esperado: exibe a mensagem de palavra invalida.
+
+CASO 6 - Numero no lugar da palavra de inicializacao
+Pergunta inicial: 1
+Esperado: exibe a mensagem de palavra invalida.
+
+CASO 7 - Diferenca entre maiusculas e minusculas
+Pergunta inicial: PlaNos
+Esperado no codigo atual: trata como palavra invalida, pois a comparacao
+distingue maiusculas de minusculas.
+
+CASO 8 - ID zero (abaixo do intervalo)
+Pergunta inicial: PLANOS
+Pergunta do ID: 0
+Esperado: exibe a mensagem de escolha invalida.
+
+CASO 9 - ID negativo
+Pergunta inicial: PLANOS
+Pergunta do ID: -1
+Esperado: exibe a mensagem de escolha invalida.
+
+CASO 10 - ID acima do intervalo
+Pergunta inicial: PLANOS
+Pergunta do ID: 5
+Esperado: exibe a mensagem de escolha invalida.
+
+CASO 11 - Texto no lugar do ID numerico
+Pergunta inicial: PLANOS
+Pergunta do ID: abc
+Esperado: exibe a mensagem de entrada invalida para o ID e encerra a funcao.
+
+CASO 12 - Falha ao ler a palavra inicial
+Na primeira pergunta, envie fim de entrada (EOF) em vez de uma palavra.
+No terminal do Windows, pressione Ctrl+Z e depois Enter.
+Esperado: entra no tratamento de falha do primeiro scanf.
+
