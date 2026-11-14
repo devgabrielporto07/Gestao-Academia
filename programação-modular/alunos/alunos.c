@@ -56,7 +56,7 @@ void cadastrar_aluno() {
 }
 void listar_alunos() {
     printf("\n--- LISTA DE ALUNOS ---\n");
-    int encontrou = 0;
+    int encontrou = 1;
 
     for (int i = 0; i < total; i++){
         if (alunos[i].ativo == 1){
