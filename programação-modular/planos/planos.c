@@ -98,3 +98,7 @@ int plano_duracao(int id) {
     if (id == 4) return 12;
     return 0;
 }
+
+const char* plano_nome(int id) {}
+double plano_valor(int id) {}
+int plano_duracao(int id) {}

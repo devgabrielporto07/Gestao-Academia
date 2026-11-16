@@ -11,4 +11,8 @@
 
 int planos(void);
 
+const char* plano_nome (int id);
+double plano_valor(int id);
+int plano_duracao(int id);
+
 #endif
