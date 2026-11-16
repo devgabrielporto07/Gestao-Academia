@@ -63,11 +63,11 @@ void listar_alunos() {
             printf("ID: %d\n", alunos[i].id);
             printf("Nome: %s", alunos[i].nome);
             printf("CPF: %s", alunos[i].cpf);
-            printf("Telefone: %s", alunos[i].telefone);
+            printf("\nTelefone: %s", alunos[i].telefone);
             printf("-----------------------\n");
         }
     }
-    if(encontrou == 0) {
+    if(encontrou == 1) {
         printf("Nenhum aluno ativo cadastrado no momento. \n");
     }
 }
@@ -223,4 +223,86 @@ void menu_alunos() {
                 printf("Opcao invalida! Tente novamente.\n");
         }
     } while (opcao != 0);
+}
+
+// =========================================================================
+// Funções para integrar com o CSharp (sem printf e sem scanf)
+// =========================================================================
+
+// cadastra e devolve o id do aluno novo
+int aluno_cadastrar(const char *nome, const char *cpf, const char *telefone)
+{
+    if (strlen(nome) == 0 || strlen(cpf) == 0)
+    {
+        return -1; // nome ou cpf vazio
+    }
+    if (total >= 100)
+    {
+        return -4; // vetor cheio
+    }
+    for (int i = 0; i < total; i++)
+    {
+        if (alunos[i].ativo == 1 && strcmp(alunos[i].cpf, cpf) == 0)
+        {
+            return -3; // cpf repetido
+        }
+    }
+
+    // copia os textos para a struct sem passar do tamanho de cada campo
+    strncpy(alunos[total].nome, nome, sizeof(alunos[total].nome) - 1);
+    alunos[total].nome[sizeof(alunos[total].nome) - 1] = '\0';
+
+    strncpy(alunos[total].cpf, cpf, sizeof(alunos[total].cpf) - 1);
+    alunos[total].cpf[sizeof(alunos[total].cpf) - 1] = '\0';
+
+    strncpy(alunos[total].telefone, telefone, sizeof(alunos[total].telefone) - 1);
+    alunos[total].telefone[sizeof(alunos[total].telefone) - 1] = '\0';
+
+    alunos[total].id = total + 1;
+    alunos[total].ativo = 1;
+    total++;
+
+    return total;
+}
+
+// remove (desativa) o aluno pelo id: 0 = deu certo, -2 = nao achou
+int aluno_remover(int id)
+{
+    for (int i = 0; i < total; i++)
+    {
+        if (alunos[i].ativo == 1 && alunos[i].id == id)
+        {
+            alunos[i].ativo = 0;
+            return 0;
+        }
+    }
+    return -2;
+}
+
+// quantos alunos ja foram cadastrados (incluindo removidos)
+int aluno_total(void)
+{
+    return total;
+}
+
+// dados do aluno pelo id ("" se o id nao existe)
+const char *aluno_nome(int id)
+{
+    if (id < 1 || id > total)
+        return "";
+    return alunos[id - 1].nome;
+}
+
+const char *aluno_cpf(int id)
+{
+    if (id < 1 || id > total)
+        return "";
+    return alunos[id - 1].cpf;
+}
+
+const char *aluno_telefone(int id)
+{
+    if (id < 1 || id > total)
+        return "";
+    return alunos[id - 1].telefone;
 }
