@@ -17,6 +17,6 @@ void listar_alunos();
 void buscar_aluno();
 void editar_aluno();
 void remover_aluno();
-void menu_alunos();
+void menu_alunos(void);
 
 #endif
