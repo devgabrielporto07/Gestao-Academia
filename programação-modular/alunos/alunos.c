@@ -3,7 +3,7 @@
 #include <string.h>
 #include "alunos.h"
 //vetor onde os alunos ficam salvos e o contador de cadastros
-Aluno alunos[100];
+Aluno alunos[1000];
 int total = 0; //conta quantos alunos existem no vetor 
 
 int aluno_existe_e_ativo(int id_busca) {
@@ -24,7 +24,7 @@ void cadastrar_aluno() {
     printf("\n--- NOVO CADASTRO ---\n");
     //nome
     printf("Digite seu nome: ");
-    fgets(alunos[total].nome, 100, stdin); 
+    fgets(alunos[total].nome, 1000, stdin); 
     
     if (alunos[total].nome[0] == '\n') {
         printf("Erro: O nome nao pode estar vazio\n");
