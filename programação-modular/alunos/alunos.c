@@ -194,7 +194,7 @@ void menu_alunos() {
         printf("3 - Buscar aluno\n");
         printf("4 - Editar aluno\n");
         printf("5 - Remover aluno\n");
-        printf("0 - Voltar ao menu principal\n");
+        printf("0 - Ir para Planos\n");
         printf("Escolha uma opcao: ");
         scanf("%d", &opcao);
         getchar(); // Limpa enter
@@ -217,13 +217,10 @@ void menu_alunos() {
                 break;
             case 0:
                 printf("Saindo da gestao de alunos...\n");
+                puts ("Entrando em planos...");
                 break;
             default:
                 printf("Opcao invalida! Tente novamente.\n");
         }
     } while (opcao != 0);
-}
-int main() {
-    menu_alunos();
-    return 0;
 }
