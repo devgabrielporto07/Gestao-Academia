@@ -63,11 +63,11 @@ void listar_alunos() {
             printf("ID: %d\n", alunos[i].id);
             printf("Nome: %s", alunos[i].nome);
             printf("CPF: %s", alunos[i].cpf);
-            printf("Telefone: %s", alunos[i].telefone);
+            printf("\nTelefone: %s", alunos[i].telefone);
             printf("-----------------------\n");
         }
     }
-    if(encontrou == 0) {
+    if(encontrou == 1) {
         printf("Nenhum aluno ativo cadastrado no momento. \n");
     }
 }
