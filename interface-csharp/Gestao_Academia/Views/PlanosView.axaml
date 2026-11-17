@@ -4,8 +4,77 @@
              x:Class="Gestao_Academia.Views.PlanosView"
              x:DataType="vm:PlanosViewModel">
 
-    <StackPanel Spacing="4">
-        <TextBlock Text="Planos" FontSize="22" FontWeight="SemiBold"/>
-        <TextBlock Text="{Binding Mensagem}" Foreground="Gray"/>
-    </StackPanel>
+    <Design.DataContext>
+        <vm:PlanosViewModel/>
+    </Design.DataContext>
+
+    <UserControl.Styles>
+        <Style Selector="Border.cartao">
+            <Setter Property="Background" Value="White"/>
+            <Setter Property="BorderBrush" Value="#E3E3E3"/>
+            <Setter Property="BorderThickness" Value="1"/>
+            <Setter Property="CornerRadius" Value="8"/>
+            <Setter Property="Padding" Value="16"/>
+        </Style>
+        <Style Selector="TextBlock.rotulo">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="Foreground" Value="#666666"/>
+        </Style>
+        <Style Selector="TextBlock.valor">
+            <Setter Property="FontSize" Value="12"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+        </Style>
+    </UserControl.Styles>
+
+    <DockPanel>
+        <!-- 1 Titulo-->
+         <StackPanel DockPanel.Dock="Top" Margin="0,0,0,16">
+            <TextBlock Text="Planos" FontSize="22" FontWeight="SemiBold"/>
+            <TextBlock Text="Selecione um plano na tabela e clique em Escolher plano" Foreground="Gray"/>
+         </StackPanel>
+
+         <!--2 Plano escolhido(embaixo)-->
+         <Border Classes="cartao" DockPanel.Dock="Bottom" Margin="0,16,0,0">
+            <StackPanel Spacing="10">
+                <TextBlock Text="O plano escolhido foi o:" FontWeight="SemiBold"/>
+                <Grid ColumnDefinitions="*,*,*,*">
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Classes="rotulo" Text="Plano"/>
+                        <TextBlock Classes="valor" Text="{Binding PlanoEscolhido.Nome,FallbackValue='-'}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <TextBlock Classes="rotulo" Text="Valor total"/>
+                        <TextBlock Classes="valor" Text="{Binding PlanoEscolhido.ValorTexto,FallbackValue='-'}"/>
+                    </StackPanel>
+                    <StackPanel Grid.Column="3">
+                        <TextBlock Classes="rotulo" Text="Valor por mês"/>
+                        <TextBlock Classes="valor" Text="{Binding PlanoEscolhido.ValorMensalTexto, FallbackValue='-'}"/>
+                    </StackPanel>
+                </Grid>
+            </StackPanel>
+         </Border>
+
+         <!--3 Tabela de planos + botão-->
+         <Border Classes="cartao">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Orientation="Horizontal" Spacing="10" Margin="0,0,0,10">
+                    <Button Content="Escolher Plano" Command="{Binding EscolherCommand}" Background="#F97316" Foreground="White"/>
+                    <TextBlock Text="{Binding Mensagem}" VerticalAlignment="Center" Foreground="#333333"/>
+                </StackPanel>
+                <DataGrid ItemsSource="{Binding Planos}"
+                        SelectedItem="{Binding PlanoSelecionada}"
+                        IsReadOnly="True"
+                        AutoGenerateColumns="False"
+                        GridLinesVisibility="Horizontal">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="ID"     Binding="{Binding id}"   Width="60"/>
+                    <DataGridTextColumn Header="Plano"  Binding="{Binding Nome}" Width="2*"/>
+                    <DataGridTextColumn Header="Valor Total"    Binding="{Binding ValorTexto}"   Width="*"/>
+                    <DataGridTextColumn Header="Duração"     Binding="{Binding DuracaoTexto}"   Width="*"/>
+                    <DataGridTextColumn Header="Valor por mês"     Binding="{Binding ValorMensalTexto}"   Width="*"/>
+                </DataGrid.Columns>
+                </DataGrid>
+            </DockPanel>
+         </Border>
+    </DockPanel>
 </UserControl>

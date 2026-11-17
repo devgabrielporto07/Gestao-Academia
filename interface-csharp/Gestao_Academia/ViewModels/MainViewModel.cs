@@ -9,6 +9,7 @@ public partial class MainViewModel : ViewModelBase
     // Os serviços são criados UMA vez e reaproveitados.
     // Assim os dados não somem quando você troca de página.
     private readonly IAlunoService _alunoService = new AlunoServiceFake();
+    private readonly IPlanoService _planoService = new PlanoServiceNativo();
 
     [ObservableProperty]
     public partial ViewModelBase PaginaAtual { get; set; }
@@ -24,7 +25,7 @@ public partial class MainViewModel : ViewModelBase
         PaginaAtual = pagina switch
         {
             "Alunos" => new AlunosViewModel(_alunoService),
-            "Planos" => new PlanosViewModel(),
+            "Planos" => new PlanosViewModel(_planoService),
             _ => PaginaAtual
         };
     }

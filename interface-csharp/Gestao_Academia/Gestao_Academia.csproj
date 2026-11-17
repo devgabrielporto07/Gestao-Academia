@@ -23,4 +23,9 @@
     </PackageReference>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.4.2" />
   </ItemGroup>
+  <!--Copia a biblioteca do C para a pasta do executavel -->
+  <ItemGroup>
+     <None Include="Native\academia.dll" Link="academia.dll" CopyToOutputDirectory="PreserveNewest" Condition="Exists('Native\academia.dll')"/>
+     <None Include="Native\libacademia.so" Link="libacademia.so" CopyToOutputDirectory="PreserveNewest" Condition="Exists('Native\libacademia.so')"/>
+  </ItemGroup>
 </Project>
