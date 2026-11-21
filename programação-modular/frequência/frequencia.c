@@ -16,7 +16,6 @@ static int aluno_tem_matricula(int id_aluno) {
     }
     return 0;
 }
-
 // Devolve 1 se o aluno já tem entrada nesse dia e 0 se não tem.
 static int ja_entrou_no_dia(int id_aluno, int dia, int mes, int ano) {
     int i;
@@ -27,7 +26,6 @@ static int ja_entrou_no_dia(int id_aluno, int dia, int mes, int ano) {
     }
     return 0;
 }
-
 // Registra a entrada de um aluno. Devolve OK ou um código de erro.
 int frequencia_registrar(int id_aluno, int dia, int mes, int ano, int hora, int minuto) {
     // dados que não fazem sentido (ou lista cheia)
@@ -52,7 +50,6 @@ int frequencia_registrar(int id_aluno, int dia, int mes, int ano, int hora, int 
     total++;
     return OK;
 }
-
 // Quantos dias o aluno veio no mês. Devolve ERRO_INVALIDO se o id ou o mês forem inválidos.
 int frequencia_contar_no_mes(int id_aluno, int mes, int ano) {
     int i, contador = 0;
@@ -66,7 +63,6 @@ int frequencia_contar_no_mes(int id_aluno, int mes, int ano) {
     }
     return contador;
 }
-
 // Mostra na tela todas as entradas de um aluno (só para o terminal).
 static void listar_entradas(int id_aluno) {
     int i, contador = 0;
@@ -81,4 +77,63 @@ static void listar_entradas(int id_aluno) {
     if (contador == 0) {
         printf("Nenhuma entrada encontrada.\n");
     }
+}
+// Logica para o terminal na parte de frequencia da academia
+int frequencia(void) {
+    int opcao = -1, id = 0, dia = 0, mes = 0, ano = 0, hora = 0, minuto = 0, resultado;
+    while (opcao != 0) { // repete o menu até o usuário digitar 0
+        printf("\n=== FREQUENCIA ===\n");
+        printf("1 - Registrar entrada\n");
+        printf("2 - Ver entradas de um aluno\n");
+        printf("3 - Quantas vezes o aluno veio no mes\n");
+        printf("0 - Sair\n");
+        printf("Escolha: ");
+        if (scanf("%d", &opcao) != 1) { // se não digitou um número, encerra
+            printf("Entrada Invalida, digite apenas numeros\n");
+            return 1;
+        }
+        if (opcao == 1) { // REGISTRAR ENTRADA
+            printf("ID do aluno: ");
+            scanf("%d", &id);
+            printf("Data (dia mes ano, ex: 12 11 2026): ");
+            scanf("%d %d %d", &dia, &mes, &ano);
+            printf("Hora (hora minuto, ex: 18 42): ");
+            scanf("%d %d", &hora, &minuto);
+            resultado = frequencia_registrar(id, dia, mes, ano, hora, minuto);
+            if (resultado == OK) {
+                printf("Entrada registrada!\n");
+            }
+            else if (resultado == ERRO_REGRA) {
+                printf("Aluno sem matricula ativa. Entrada nao registrada.\n");
+            }
+            else if (resultado == ERRO_DUPLICADO) {
+                printf("Esse aluno ja entrou nesse dia. Entrada nao registrada.\n");
+            }
+            else {
+                printf("ID, data ou hora invalidos. Entrada nao registrada.\n");
+            }
+        }
+        else if (opcao == 2) { // VER ENTRADAS DE UM ALUNO
+            printf("ID do aluno: ");
+            scanf("%d", &id);
+            listar_entradas(id);
+        }
+        else if (opcao == 3) { // QUANTOS DIAS O ALUNO VEIO NO MES
+            printf("ID do aluno: ");
+            scanf("%d", &id);
+            printf("Mes e ano (ex: 11 2026): ");
+            scanf("%d %d", &mes, &ano);
+            resultado = frequencia_contar_no_mes(id, mes, ano);
+            if (resultado < 0) {
+                printf("ID ou mes invalido.\n");
+            }
+            else {
+                printf("O aluno %d veio %d dia(s) nesse mes.\n", id, resultado);
+            }
+        }
+        else if (opcao != 0) { // qualquer outro número que não está no menu
+            printf("Opcao invalida.\n");
+        }
+    }
+    return 0; // final do codigo
 }
