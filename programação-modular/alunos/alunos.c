@@ -67,7 +67,7 @@ void listar_alunos() {
             printf("-----------------------\n");
         }
     }
-    if(encontrou == 0) {
+    if(encontrou == 1) {
         printf("Nenhum aluno ativo cadastrado no momento. \n");
     }
 }
