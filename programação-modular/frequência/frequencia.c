@@ -137,3 +137,43 @@ int frequencia(void) {
     }
     return 0; // final do codigo
 }
+// =========================================================================
+// Funções para integrar com o CSharp (sem printf e sem scanf)
+// As entradas ficam nas posições 0 até total-1 das listas.
+// =========================================================================
+
+// quantas entradas já foram registradas
+int frequencia_total(void) {
+    return total;
+}
+
+// dados da entrada que está na posição informada (0 se a posição não existe)
+int frequencia_id_aluno(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return ids[posicao];
+}
+
+int frequencia_dia(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return dias[posicao];
+}
+
+int frequencia_mes(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return meses[posicao];
+}
+
+int frequencia_ano(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return anos[posicao];
+}
+
+int frequencia_hora(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return horas[posicao];
+}
+
+int frequencia_minuto(int posicao) {
+    if (posicao < 0 || posicao >= total) return 0;
+    return minutos[posicao];
+}
